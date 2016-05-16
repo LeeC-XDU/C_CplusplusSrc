@@ -1,20 +1,20 @@
 /**********************************
-º¯Êý¹¦ÄÜ:ASCIIÂë»æÖÆÊý×Ö
-²ÎÊý1:ÒªÏÔÊ¾µÄÄÚÈÝµÄ×Ö·û´®ÐÎÊ½
-·µ»ØÖµ:ÎÞ
-ËµÃ÷:»ù±¾Ë¼Â·ÊÇÕâÑùµÄ£¬Îå¸öÑ­»·²»»á±ä£¬×Ö·ûµÄÏÔÊ¾Ò²²»»á±äÁË£»
-     Òª¸ÄµÄµØ·½ÊÇÊÇ·ñÏÔÊ¾'*'ºÅ»òÆäËû·ûºÅºÍÔÚÄÄÏÔÊ¾Õâ¸öÌØÊâ·ûºÅµÄÎÊÌâ
-ËùÐè±ê×¼¿âÎÄ¼þ:stdio.h
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-12-23
-ÐÞ¸ÄÊ±¼ä:
+å‡½æ•°åŠŸèƒ½:ASCIIç ç»˜åˆ¶æ•°å­—
+å‚æ•°1:è¦æ˜¾ç¤ºçš„å†…å®¹çš„å­—ç¬¦ä¸²å½¢å¼
+è¿”å›žå€¼:æ— 
+è¯´æ˜Ž:åŸºæœ¬æ€è·¯æ˜¯è¿™æ ·çš„ï¼Œäº”ä¸ªå¾ªçŽ¯ä¸ä¼šå˜ï¼Œå­—ç¬¦çš„æ˜¾ç¤ºä¹Ÿä¸ä¼šå˜äº†ï¼›
+     è¦æ”¹çš„åœ°æ–¹æ˜¯æ˜¯å¦æ˜¾ç¤º'*'å·æˆ–å…¶ä»–ç¬¦å·å’Œåœ¨å“ªæ˜¾ç¤ºè¿™ä¸ªç‰¹æ®Šç¬¦å·çš„é—®é¢˜
+æ‰€éœ€æ ‡å‡†åº“æ–‡ä»¶:stdio.h
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-12-23
+ä¿®æ”¹æ—¶é—´:
 **************************************/
 void ASCIINumberDisplay(const char* string)
 {
 	unsigned int len = 0, i = 0;
 	len = strlen(string);
 
-	//µÚÒ»ÐÐ
+	//ç¬¬ä¸€è¡Œ
 	for(i=0; i<len-1; i++)
 	{
 		switch(string[i])
@@ -53,7 +53,7 @@ void ASCIINumberDisplay(const char* string)
 	}
 
 
-	//µÚ¶þÐÐ
+	//ç¬¬äºŒè¡Œ
 	for(i=0; i<len-1; i++)
 	{
 		
@@ -97,7 +97,7 @@ void ASCIINumberDisplay(const char* string)
 	}
 
 
-	//µÚÈýÐÐ
+	//ç¬¬ä¸‰è¡Œ
 	for(i=0; i<len-1; i++)
 	{
 		switch(string[i])
@@ -125,7 +125,7 @@ void ASCIINumberDisplay(const char* string)
 			printf(" - \n");
 	}
 
-	//µÚËÄÐÐ
+	//ç¬¬å››è¡Œ
 	for(i=0; i<len-1; i++)
 	{
 		switch(string[i])
@@ -169,7 +169,7 @@ void ASCIINumberDisplay(const char* string)
 			printf("|  \n");
 	}
 
-	//µÚÎåÐÐ
+	//ç¬¬äº”è¡Œ
 	for(i=0; i<len-1; i++)
 	{
 		switch(string[i])

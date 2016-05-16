@@ -12,30 +12,27 @@ typedef struct LinkListItem
 
 typedef struct LNode
 {
-	Item data;
+	LinkListItem data;
 	struct LNode *next;
-}LNode,*LinkList;
+}LNode, *LinkList;
 
 int InitList(LinkList *L);
-int DestoryList(LinkList *L);
+int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e));
 
 int CreateListHead(LinkList *L, size_t num, void (*InPut)(LinkListItem *e));
 int CreateListTail(LinkList *L, size_t num, void (*InPut)(LinkListItem *e));
 
+int ClearList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e));
 int IsEmptyList(const LinkList L);
 size_t ListLength(const LinkList L);
-int ClearList(LinkList *L);
 
 
+void InsertLinkListItem(LinkList *L, const size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
+void DeleteLinkListItem(LinkList *L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
 
-void InsertLinkListItem(LinkList *L, size_t n, Item e); 
-void DeleteItem(LinkList *L, size_t i, Item e); 
-
-Item GetItem(LinkList L,unsigned int i);
-void ReplaceItem(LinkList L,unsigned int i,Item e);
-unsigned int LocateItem(LinkList L,Item e,unsigned int **locate,bool (*compare)(Item,Item));
-void FunList(LinkList L,void (*pfun)(Item));
-void LinkSort(LinkList L,bool (*compare)(Item,Item));
+void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
+size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem));
+void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e));
 
 
 #endif

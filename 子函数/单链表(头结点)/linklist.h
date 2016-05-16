@@ -13,7 +13,7 @@ typedef struct LNode
 {
 	LinkListItem data;
 	struct LNode *next;
-}LNode,*LinkList;
+}LNode, *LinkList;
 
 int InitList(LinkList *L);
 int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e));

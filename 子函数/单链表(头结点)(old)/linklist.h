@@ -17,7 +17,7 @@ int InitList(LinkList *L);
 void SetHeadNode(Item *e);
 int DestoryList(LinkList *L,int **locate);
 
-//这个创建链表函数没有统一的形式吧
+//杩欎釜鍒涘缓閾捐〃鍑芥暟娌℃湁缁熶竴鐨勫舰寮忓惂
 void CreateList(LinkList L,Item e);
 
 int ListIsEmpty(LinkList L);

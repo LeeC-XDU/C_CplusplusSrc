@@ -15,7 +15,7 @@ typedef struct stack
 {
 	Item *base;
 	Item *top;
-	size_t stacksize;		//×¢ÒâÕâ¸öÊÇ¼ÇÂ¼µÄÕ»µÄ³¤¶ÈÄØ»¹ÊÇÕ»µÄ´óĞ¡°¡£¿
+	size_t stacksize;		//æ³¨æ„è¿™ä¸ªæ˜¯è®°å½•çš„æ ˆçš„é•¿åº¦å‘¢è¿˜æ˜¯æ ˆçš„å¤§å°å•Šï¼Ÿ
 }SqStack;
 
 
@@ -24,9 +24,9 @@ int DestoryStack(SqStack *S);
 
 int StackIsEmpty(SqStack S);
 void ClearStack(SqStack *S);
-size_t StackLength(SqStack);	//±¾ÈË°ÑÕ»µÄ´óĞ¡µÈÍ¬ÓÚÕ»µÄ³¤¶ÈÁË£¬ËùÒÔÕâ¸öº¯ÊıÃ»ÓÃÁË
+size_t StackLength(SqStack);	//æœ¬äººæŠŠæ ˆçš„å¤§å°ç­‰åŒäºæ ˆçš„é•¿åº¦äº†ï¼Œæ‰€ä»¥è¿™ä¸ªå‡½æ•°æ²¡ç”¨äº†
 
-Item GetTop(SqStack S);	//Õâ½öÊÇµÃµ½Õ»¶¥ÔªËØ£¬Õ»±¾Éí²»±ä£¬³öÕ»ÔòÕ»µÄÖ¸Õë»á·¢Éú±ä»¯
+Item GetTop(SqStack S);	//è¿™ä»…æ˜¯å¾—åˆ°æ ˆé¡¶å…ƒç´ ï¼Œæ ˆæœ¬èº«ä¸å˜ï¼Œå‡ºæ ˆåˆ™æ ˆçš„æŒ‡é’ˆä¼šå‘ç”Ÿå˜åŒ–
 
 void Push(SqStack *S,Item e);
 Item Pop(SqStack *S);

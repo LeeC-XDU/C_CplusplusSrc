@@ -5,14 +5,14 @@
 
 
 /**************************************************
-º¯Êı¹¦ÄÜ:³õÊ¼»¯Á´±í
-²ÎÊı1(Output):Á´±íÍ·Ö¸Õë
-·µ»ØÖµ:³õÊ¼»¯³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-05-10
-ĞŞ¸ÄÊ±¼ä:2016-05-04
-ĞŞ¸ÄËµÃ÷:´úÂëÖØ¹¹
+å‡½æ•°åŠŸèƒ½:åˆå§‹åŒ–é“¾è¡¨
+å‚æ•°1(Output):é“¾è¡¨å¤´æŒ‡é’ˆ
+è¿”å›å€¼:åˆå§‹åŒ–æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
 **************************************************/
 int InitList(LinkList *L)
 {
@@ -22,21 +22,23 @@ int InitList(LinkList *L)
 }
 
 /**************************************************
-º¯Êı¹¦ÄÜ:Ïú»ÙÁ´±í
-²ÎÊı1(Output):Á´±íÍ·Ö¸Õë
-·µ»ØÖµ:Ïú»Ù³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-05-10
-ĞŞ¸ÄÊ±¼ä:2016-05-04
-ĞŞ¸ÄËµÃ÷:´úÂëÖØ¹¹
+å‡½æ•°åŠŸèƒ½:é”€æ¯é“¾è¡¨
+å‚æ•°1(Output):é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:å‡½æ•°æŒ‡é’ˆï¼Œå½“LinkListItemä¸­æœ‰éœ€è¦åŠ¨æ€åˆ†é…å†…å­˜çš„æŒ‡é’ˆæ—¶è°ƒç”¨ï¼Œå¦åˆ™ä¼ å…¥NULL
+è¿”å›å€¼:é”€æ¯æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
 **************************************************/
-int DestoryList(LinkList *L)
+int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 {
-	LinkList current = NULL;
+	LNode *current = NULL;
 	while((*L))
 	{
 		current =(*L)->next;
+		FreeLinkListItem(&(*L)->data);
 		free(*L);
 		*L = current;
 	}
@@ -46,23 +48,23 @@ int DestoryList(LinkList *L)
 
 
 /**************************************************
-º¯Êı¹¦ÄÜ:Í·²å·¨´´½¨Á´±í
-²ÎÊı1(Output):Á´±íÍ·Ö¸Õë
-²ÎÊı2:Á´±í´óĞ¡
-²ÎÊı3:º¯ÊıÖ¸Õë£¬Ö¸³öÎªÁ´±íÊı¾İ¸³ÖµµÄ·½Ê½
-·µ»ØÖµ:´´½¨³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-05-10
-ĞŞ¸ÄÊ±¼ä:2016-05-04
-ĞŞ¸ÄËµÃ÷:´úÂëÖØ¹¹
+å‡½æ•°åŠŸèƒ½:å¤´æ’æ³•åˆ›å»ºé“¾è¡¨
+å‚æ•°1(Output):é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:é“¾è¡¨å¤§å°
+å‚æ•°3:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºä¸ºé“¾è¡¨æ•°æ®èµ‹å€¼çš„æ–¹å¼
+è¿”å›å€¼:åˆ›å»ºæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
 **************************************************/
 int CreateListHead(LinkList *L, size_t num, void (*InPut)(LinkListItem *e))
 {
-	//Í·²å·¨±ØĞëÒªÇóÍ·Ö¸ÕëÎªNULL
+	//å¤´æ’æ³•å¿…é¡»è¦æ±‚å¤´æŒ‡é’ˆä¸ºNULL
 	assert(*L);
 	
-	LNode * current = NULL;
+	LNode *current = NULL;
 	size_t i = 0;
 	
 	(*L) = (LNode *)malloc(sizeof(LNode));
@@ -81,29 +83,29 @@ int CreateListHead(LinkList *L, size_t num, void (*InPut)(LinkListItem *e))
 }
 
 /**************************************************
-º¯Êı¹¦ÄÜ:Î²²å·¨´´½¨Á´±í
-²ÎÊı1(Output):Á´±íÍ·Ö¸Õë
-²ÎÊı2:Á´±í´óĞ¡
-²ÎÊı3:º¯ÊıÖ¸Õë£¬Ö¸³öÎªÁ´±íÊı¾İ¸³ÖµµÄ·½Ê½
-·µ»ØÖµ:´´½¨³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2016-05-04
-ĞŞ¸ÄÊ±¼ä:
-ĞŞ¸ÄËµÃ÷:
+å‡½æ•°åŠŸèƒ½:å°¾æ’æ³•åˆ›å»ºé“¾è¡¨
+å‚æ•°1(Output):é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:é“¾è¡¨å¤§å°
+å‚æ•°3:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºä¸ºé“¾è¡¨æ•°æ®èµ‹å€¼çš„æ–¹å¼
+è¿”å›å€¼:åˆ›å»ºæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2016-05-04
+ä¿®æ”¹æ—¶é—´:
+ä¿®æ”¹è¯´æ˜:
 **************************************************/
-int CreateListTail(LinkList *L, size_t num, void (*InPut)(LinkListItem *e))
+int CreateListTail(LinkList *L, const size_t num, void (*InPut)(LinkListItem *e))
 {
-	//Î²²å·¨±ØĞëÒªÇóÍ·Ö¸ÕëÎªNULL
+	//å°¾æ’æ³•å¿…é¡»è¦æ±‚å¤´æŒ‡é’ˆä¸ºNULL
 	assert(*L);
 
 	/*******************************************
-	 * current : Ö¸ÏòÁ´±íµ±Ç°Òª²Ù×÷½ÚµãµÄÖ¸Õë£¬
-	 * prior : Ö¸ÏòcurrentËùÖ¸ÏòµÄÉÏÒ»¸ö½ÚµãµÄÖ¸Õë
-	           ³õÊ¼ÖµÎªÁ´±íÍ·Ö¸Õë
+	 * current : æŒ‡å‘é“¾è¡¨å½“å‰è¦æ“ä½œèŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œ
+	 * prior : æŒ‡å‘currentæ‰€æŒ‡å‘çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
+	           åˆå§‹å€¼ä¸ºé“¾è¡¨å¤´æŒ‡é’ˆ
 	*******************************************/
-	LNode * current = NULL;
-	LNode * prior = NULL;
+	LNode *current = NULL;
+	LNode *prior = NULL;
 	size_t i = 0;
 	
 	(*L) = (LNode *)malloc(sizeof(LNode));
@@ -116,7 +118,7 @@ int CreateListTail(LinkList *L, size_t num, void (*InPut)(LinkListItem *e))
 	{
 		current = (LNode *)malloc(sizeof(LNode));
 		InPut(&current->data);
-		proir->next = current;
+		prior->next = current;
 		prior = current;
 	}
 	
@@ -127,14 +129,49 @@ int CreateListTail(LinkList *L, size_t num, void (*InPut)(LinkListItem *e))
 
 
 /**************************************************
-º¯Êı¹¦ÄÜ:ÅĞ¶ÏÁ´±íÊÇ·ñÊÇ¿Õ
-²ÎÊı1:Á´±íÍ·Ö¸Õë
-·µ»ØÖµ:Çå¿Õ³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:ÓëÏú»ÙÁ´±í²»Í¬£¬±¾º¯Êı±£ÁôÍ·Ö¸ÕëµÄ´æ´¢¿Õ¼ä
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2016-05-04
-ĞŞ¸ÄÊ±¼ä:
-ĞŞ¸ÄËµÃ÷:
+å‡½æ•°åŠŸèƒ½:æ¸…ç©ºé“¾è¡¨
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:å‡½æ•°æŒ‡é’ˆï¼Œå½“LinkListItemä¸­æœ‰éœ€è¦åŠ¨æ€åˆ†é…å†…å­˜çš„æŒ‡é’ˆæ—¶è°ƒç”¨ï¼Œå¦åˆ™ä¼ å…¥NULL
+è¿”å›å€¼:æ¸…ç©ºæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜: ä¸ DestoryList() å‡½æ•°ä¸€è‡´
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2016-05-04
+ä¿®æ”¹æ—¶é—´:
+ä¿®æ”¹è¯´æ˜:
+**************************************************/
+int ClearList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
+{
+	/*******************************************
+	 * current : æŒ‡å‘é“¾è¡¨å½“å‰è¦æ“ä½œèŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œ
+	             åˆå§‹å€¼ä¸ºé“¾è¡¨ç¬¬ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
+	 * posterior : æŒ‡å‘currentæ‰€æŒ‡å‘çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
+	*******************************************/
+	LNode *current = *L;
+	LNode *posterrior = NULL;
+	
+	while( current )
+	{
+		posterrior = current->next;
+		FreeLinkListItem(&current->data);
+		free(current);
+		current = posterrior;
+	}
+	
+	*L = NULL;
+
+	return 1;
+}
+
+
+/**************************************************
+å‡½æ•°åŠŸèƒ½:åˆ¤æ–­é“¾è¡¨æ˜¯å¦æ˜¯ç©º
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+è¿”å›å€¼:æ¸…ç©ºæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:ä¸é”€æ¯é“¾è¡¨ä¸åŒï¼Œæœ¬å‡½æ•°ä¿ç•™å¤´æŒ‡é’ˆçš„å­˜å‚¨ç©ºé—´
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2016-05-04
+ä¿®æ”¹æ—¶é—´:
+ä¿®æ”¹è¯´æ˜:
 **************************************************/
 int IsEmptyList(const LinkList L)
 {
@@ -145,20 +182,20 @@ int IsEmptyList(const LinkList L)
 }
 
 /**************************************************
-º¯Êı¹¦ÄÜ:ÇóÁ´±í³¤¶È
-²ÎÊı1:Á´±íÍ·Ö¸Õë
-·µ»ØÖµ:Á´±í³¤¶È
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-05-10
-ĞŞ¸ÄÊ±¼ä:2016-05-04
-ĞŞ¸ÄËµÃ÷:´úÂëÖØ¹¹
+å‡½æ•°åŠŸèƒ½:æ±‚é“¾è¡¨é•¿åº¦
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+è¿”å›å€¼:é“¾è¡¨é•¿åº¦
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
 **************************************************/
 size_t ListLength(const LinkList L)
 {
 	size_t length = 0;
 	
-	LinkList current=L;
+	LNode *current=L;
 
 	while(current)
 	{
@@ -170,200 +207,259 @@ size_t ListLength(const LinkList L)
 }
 
 
+
+
 /**************************************************
-º¯Êı¹¦ÄÜ:Çå¿ÕÁ´±í
-²ÎÊı1:Á´±íÍ·Ö¸Õë
-·µ»ØÖµ:Çå¿Õ³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2016-05-04
-ĞŞ¸ÄÊ±¼ä:
-ĞŞ¸ÄËµÃ÷:
+å‡½æ•°åŠŸèƒ½:æ’å…¥å…ƒç´ 
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:æ’å…¥ä½ç½®
+å‚æ•°3:æ’å…¥å…ƒç´ 
+å‚æ•°4:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºä¸ºé“¾è¡¨æ•°æ®èµ‹å€¼çš„æ–¹å¼
+è¿”å›å€¼:
+è¯´æ˜:æ’å…¥ä½ç½®ä»1å¼€å§‹ï¼Œä¸ºç¬¬nä¸ªä½ç½®ï¼›
+     åœ¨ç¬¬nä¸ªä½ç½®æ’å…¥ï¼ŒåŸç¬¬nä¸ªå…ƒç´ å˜ä¸ºç¬¬n+1ä¸ªã€‚
+     å½“é“¾è¡¨ä¸ºç©ºé“¾è¡¨æ—¶ï¼Œä¹Ÿå¯ä»¥åœ¨ç¬¬ä¸€ä¸ªä½ç½®æ’å…¥ï¼›
+	 ä¸èƒ½åœ¨ç¬¬ ListLength(L)+1 å¤„æ’å…¥ã€‚
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
 **************************************************/
-int ClearList(LinkList *L)
+void InsertLinkListItem(LinkList *L, const size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
+	assert(!*L);
+	assert(n < 1);
+	assert(n > ListLength(*L));
+
+	LNode *prior = (*L);
+	LNode *current = NULL;
+	size_t priorPos = 1;
+
 	/*******************************************
-	 * current : Ö¸ÏòÁ´±íµ±Ç°Òª²Ù×÷½ÚµãµÄÖ¸Õë£¬
-	             ³õÊ¼ÖµÎªÁ´±íµÚÒ»¸ö½ÚµãµÄÖ¸Õë
-	 * posterior : Ö¸ÏòcurrentËùÖ¸ÏòµÄÏÂÒ»¸ö½ÚµãµÄÖ¸Õë
+	 * prior : æŒ‡å‘é“¾è¡¨å½“å‰è¦æ’å…¥èŠ‚ç‚¹ä½ç½®çš„å‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œ
+	           åˆå§‹å€¼ä¸ºæŒ‡å‘é“¾è¡¨ç¬¬ä¸€ä¸ªå…ƒç´ çš„æŒ‡é’ˆ
+	 * current : æ–°åˆ†é…çš„å¾…æ’å…¥çš„èŠ‚ç‚¹
+	 * priorPos : è®°å½•ç€å“ªä¸ªèŠ‚ç‚¹ï¼Œä»ç¬¬1ä¸ªèŠ‚ç‚¹ç®—èµ·
 	*******************************************/
-	LinkList current = *L;
-	LinkList posterrior = NULL;
-	
-	while( current )
+	if(priorPos == 1)
 	{
-		posterrior = current->next;
-		free(current);
-		current = posterrior;
-	}
-	
-	*L = NULL;
-
-	return 1;
-}
-
-
-
-
-
-
-
-
-void InsertLinkListItem(LinkList *L,unsigned int i,LinkListItem e)
-{
-	LinkList current=*L;
-	LNode *pnew;
-	unsigned int j=1;	//j¼ÇÂ¼×ÅÄÄ¸ö½Úµã£¬´ÓµÚ1¸ö½ÚµãËãÆğ
-
-	if(i == 1)
-	{
-		pnew=(LNode*)malloc(sizeof(LNode));
-		if(pnew==NULL)
+		current = (LNode*)malloc(sizeof(LNode));
+		if(current==NULL)
 		{
-			printf("Call InsertItem() ERROR(1) !\n");
-			exit(0);
+			fputs("Call InsertItem() ERROR(1) !\n", stdout);
+			exit(EXIT_FAILURE);
 		}
 
-		pnew->data=e;
-		pnew->next=current;
-		*L=pnew;
+		Assgin(&current->data, e);
+		current->next = prior;
+		*L = current;
 	}
 	else
 	{
-		while(current && j<i-1)		//Ñ­»·Ö´ĞĞi-2´Î,currentÏòºóÖ¸ÏòÁ½´Î£¬Ö¸ÏòµÚÈı¸öÎ»ÖÃ,j¾ÍÖ¸Ê¾currentÖ¸ÏòµÚ¼¸¸ö
+		//å¾ªç¯æ‰§è¡Œn-1æ¬¡ï¼ŒæŒ‡å‘ç¬¬n-1ä¸ªä½ç½®
+		//å‰ä¸€ä¸ªæ¡ä»¶ä¿è¯å¯ä»¥æœ€å¤šåªèƒ½æŒ‡å‘é“¾è¡¨æœ€åä¸€ä¸ªèŠ‚ç‚¹
+		while(prior && priorPos < n-1)		//,currentå‘åæŒ‡å‘ä¸¤æ¬¡ï¼ŒæŒ‡å‘ç¬¬ä¸‰ä¸ªä½ç½®,jå°±æŒ‡ç¤ºcurrentæŒ‡å‘ç¬¬å‡ ä¸ª
 		{
-			current=current->next;
-			j++;
+			prior = prior->next;
+			priorPos++;
 		}
 		
 		
-		if(!current || j>i-1)
+		if(!prior || priorPos > n-1)
 		{
-			printf("Call InsertItem() ERROR(3) !\n");
-			printf("The List`s length is %u,the insert location %u is overflow\n",ListLength(*L),i);
+			fputs("Call InsertItem() ERROR !\n", stdout);
+			fprintf(stdout, "The List`s length is %lu,the insert location %lu is overflow\n", ListLength(*L), n);
 			exit(0);
 		}
 		 
-		pnew=(LNode *)malloc(sizeof(LNode));
-		if(pnew==NULL)
+		current = (LNode *)malloc(sizeof(LNode));
+		if(current == NULL)
 		{
-			printf("Call InsertItem() ERROR(4) !\n");
-			exit(0);
+			fputs("Call InsertItem() ERROR !\n", stdout);
+			exit(EXIT_FAILURE);
 		}
 
-		pnew->data=e;
-		pnew->next=current->next;
-		current->next=pnew;
+		Assgin(&current->data, e);
+		current->next = prior->next;
+		prior->next = current;
 	}
 }
 
-void DeleteItem(LinkList *L,unsigned int i)
-{
-	LinkList current=*L,temp;
-	unsigned int j=1;
 
-	if(ListIsEmpty(*L))
-	{
-		printf("The List is none,call DeleteItem() ERROR !(1)\n");
-		exit(0);
-	}
+/**************************************************
+å‡½æ•°åŠŸèƒ½:åˆ é™¤å…ƒç´ å¹¶è¿”å›åˆ é™¤å…ƒç´ çš„å€¼
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:åˆ é™¤ä½ç½®
+å‚æ•°3(Output):è¿”å›å…ƒç´ 
+å‚æ•°4:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºä¸ºæ•°æ®èµ‹å€¼çš„æ–¹å¼
+è¿”å›å€¼:æ— 
+è¯´æ˜:åˆ é™¤ä½ç½®ä»1å¼€å§‹ï¼Œä¸ºç¬¬nä¸ªä½ç½®ã€‚
+     å½“é“¾è¡¨ä¸ºç©ºé“¾è¡¨æ—¶ï¼Œä¸èƒ½åˆ é™¤å…ƒç´ ï¼Œæ‰€ä»¥åœ¨æ–­è¨€å¤„æ¯”æ’å…¥å‡½æ•°å¤šäº†ä¸€å¥ assert(!L->next)ï¼›
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
+**************************************************/
+void DeleteLinkListItem(LinkList *L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
+{
+	assert(!*L);
+	assert(n < 1);
+	assert(n > ListLength(*L));
 	
-	if(i==1)
+	/*******************************************
+	 * prior : æŒ‡å‘é“¾è¡¨å½“å‰è¦æ’å…¥èŠ‚ç‚¹ä½ç½®çš„å‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œ
+	           åˆå§‹å€¼ä¸ºæŒ‡å‘é“¾è¡¨å¤´ç¬¬ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
+	 * current : è¦åˆ é™¤çš„èŠ‚ç‚¹
+	 * priorPos : è®°å½•ç€å“ªä¸ªèŠ‚ç‚¹ï¼Œä»ç¬¬1ä¸ªèŠ‚ç‚¹ç®—èµ·
+	*******************************************/
+	LNode *prior = *L, *current = NULL;
+	size_t priorPos = 1;
+
+	
+	if(n == 1)
 	{
-		if(!current->next)
-		{
-			free(*L);
-			*L=NULL;
-		}
+		if(!prior->next)
+			*L = NULL;
 		else
-		{
-			*L=current->next;
-			free(current);
-		}
+			*L = prior->next;
+		
+		free(prior);
 	}
 	else
 	{
-		while(current && j<i-1)
+		//å‰ä¸€ä¸ªæ¡ä»¶ä¿è¯ prior æœ€å¤šåªèƒ½æŒ‡å‘æœ€åä¸€ä¸ªèŠ‚ç‚¹çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
+		while(prior->next && priorPos < n-1)
 		{
-			current=current->next;
-			j++;
+			prior = prior->next;
+			priorPos++;
 		}
 
-		if(!current->next || j>i-1)
+		if(!prior->next || priorPos > n-1)
 		{
-			printf("Call DeleteItem() ERROR!(2)\n");
-			printf("The List`s length is %u,the delete location %u is overflow\n",ListLength(*L),i);
-			exit(0);
+			fputs("Call DeleteItem() ERROR!\n", stdout);
+			fprintf(stdout, "The List`s length is %lu,the delete location %lu is overflow\n", ListLength(*L), n);
+			exit(EXIT_FAILURE);
 		}
 		
-		temp=current->next;	
-		current->next=temp->next;
-		free(temp);
+		current = prior->next;
+		prior->next = current->next;
+		Assgin(e, &current->data);
+		free(current);
 	}
 }
 
-void FunList(LinkList L,void (*pfun)(LinkListItem))
+
+/**************************************************
+å‡½æ•°åŠŸèƒ½:è·å–é“¾è¡¨æŸä¸€ä½ç½®å¤„çš„å€¼
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:å¾…è·å–å…ƒç´ çš„ä½ç½®
+å‚æ•°3(Output):è¿”å›å…ƒç´ 
+å‚æ•°4:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºä¸ºæ•°æ®èµ‹å€¼çš„æ–¹å¼
+è¿”å›å€¼:æ— 
+è¯´æ˜:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
+**************************************************/
+void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
-	LinkList current=L;
+	assert(!L);
+	assert(n < 1);
+	assert(n > ListLength(L));
+	
+	
+	/*******************************************
+	 * current : æŒ‡å‘é“¾è¡¨å¾…è·å–å¤„çš„èŠ‚ç‚¹ï¼Œ
+	             åˆå§‹å€¼ä¸ºæŒ‡å‘é“¾è¡¨ç¬¬ä¸€ä¸ªå…ƒç´ çš„æŒ‡é’ˆ
+	 * currentPos : å¾…è·å–å¤„çš„èŠ‚ç‚¹ä½ç½®ï¼Œä»ç¬¬1ä¸ªèŠ‚ç‚¹ç®—èµ·
+	*******************************************/
+	LNode *current = L;
+	size_t currentPos = 1;
+
+	while(current && currentPos < 1)
+	{
+		current = current->next;
+		currentPos++;
+	}
+
+	if(!current || currentPos > 1)
+	{
+		fputs("Call GetItem() ERROR !\n", stdout);
+		fprintf(stdout, "The List`s length is %lu,the get location %lu is overflow\n", ListLength(L), n);
+		exit(EXIT_FAILURE);
+	}
+
+	Assgin(e, &current->data);
+}
+
+
+/**************************************************
+å‡½æ•°åŠŸèƒ½:å®šä½é“¾è¡¨ä¸­ç¬¬ä¸€ä¸ªä¸æŒ‡å®šå…ƒç´ åŒ¹é…çš„ä½ç½®
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:å¾…åŒ¹é…å…ƒç´ 
+å‚æ•°3:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºå…ƒç´ ç›¸ç­‰çš„æ–¹å¼
+è¿”å›å€¼:åŒ¹é…æˆåŠŸè¿”å›ç¬¬ä¸€ä¸ªåŒ¹é…çš„ä½ç½®ï¼Œå¤±è´¥è¿”å›0
+è¯´æ˜:ç©ºé“¾è¡¨ç›´æ¥è¿”å›0
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
+**************************************************/
+size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem))
+{
+	assert(!L);
+	assert(!e);
+
+	/*******************************************
+	 * current : æŒ‡å‘é“¾è¡¨å¾…è·å–å¤„çš„èŠ‚ç‚¹ï¼Œ
+	             åˆå§‹å€¼ä¸ºæŒ‡å‘é“¾è¡¨ç¬¬ä¸€ä¸ªå…ƒç´ çš„æŒ‡é’ˆ
+	 * index : åŒ¹é…å¤„çš„ç´¢å¼•
+	*******************************************/
+	LNode *current = L;
+	size_t index = 0;
+
 	while(current)
 	{
-		(*pfun)(current->data);
-		current=current->next;
+		index++;
+		if(Compare(&current->data, e))
+			return index;
+		current = current->next;
 	}
+
+	return index;
 }
 
 
-
-LinkListItem GetItem(LinkList L,unsigned int i)
+/**************************************************
+å‡½æ•°åŠŸèƒ½:é“¾è¡¨éå†
+å‚æ•°1:é“¾è¡¨å¤´æŒ‡é’ˆ
+å‚æ•°2:å‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‡ºå¯¹æ¯ä¸ªé“¾è¡¨å…ƒç´ è¿›è¡Œçš„æ“ä½œ
+è¿”å›å€¼:æ— 
+è¯´æ˜:åªè¦é“¾è¡¨å¤´æŒ‡é’ˆä¸ä¸ºç©ºå³å¯ï¼Œæ‰€ä»¥åªæ–­è¨€äº†L
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-05-10
+ä¿®æ”¹æ—¶é—´:2016-05-04
+ä¿®æ”¹è¯´æ˜:ä»£ç é‡æ„
+**************************************************/
+void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e))
 {
-	LinkList current=L;
-	unsigned int j=1;
-
-	while(current && j<i)	//ÈôÁ´±íÒ»¹²3¸öÔªËØ£¬µ±i=4Ê±£¬Á½ÕßÍ¬Ê±²»Âú×ã£¬µ«µ±i>4Ê±£¬¾ÍÊÇcurrentÆğ¾ö¶¨×÷ÓÃÁË¡£
-	{
-		current=current->next;
-		j++;
-	}
-
-	if(!current || j>i)
-	{
-		printf("Call GetItem() ERROR !\n");
-		printf("The List`s length is %u,the get location %u is overflow\n",ListLength(L),i);
-		exit(0);
-	}
-
-	return current->data;
-}
-
-/************************************************
-º¯Êı¹¦ÄÜ:¶¨Î»Á´±íÖĞÆ¥ÅäÔªËØµÄ²Ù×÷£¬²¢½«Æ¥ÅäµÄÔªËØµÄÎ»ÖÃÉú³ÉÒ»¸öÊı×éÊä³ö
-ÊäÈë²ÎÊı:Á´±íÖ¸Õë
-Êä³ö²ÎÊı:Æ¥ÅäµÄÔªËØµÄÎ»ÖÃÊı×é
-***************************/
-unsigned int LocateItem(LinkList L,LinkListItem e,unsigned int** locate,bool (*compare)(LinkListItem,LinkListItem))
-{
-	LinkList current=L;
-	unsigned int count=0,j=1;
-
-	*locate=(unsigned int*)malloc(count*sizeof(unsigned int));
-
+	assert(!L);
+	
+	/*******************************************
+	 * current : æŒ‡å‘é“¾è¡¨å¾…è·å–å¤„çš„èŠ‚ç‚¹ï¼Œ
+	             åˆå§‹å€¼ä¸ºæŒ‡å‘é“¾è¡¨ç¬¬ä¸€ä¸ªå…ƒç´ çš„æŒ‡é’ˆ
+	*******************************************/
+	LNode *current = L;
 	while(current)
 	{
-		if((*compare)(current->data,e))
-		{
-			*locate=(unsigned int*)realloc(*locate,++count*sizeof(unsigned int));
-			(*locate)[count-1]=j;
-		}
-		current=current->next;
-		j++;
+		(*pfun)(&current->data);
+		current = current->next;
 	}
-
-	Flag=1;
-
-	return count;
 }
 
 
+/*
 void ReplaceItem(LinkList L,unsigned int i,LinkListItem e)
 {
 	LinkList current=L;
@@ -408,3 +504,4 @@ void LinkSort(LinkList L,bool (*compare)(LinkListItem,LinkListItem))
 		current=L;
 	}
 }
+*/

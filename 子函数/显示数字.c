@@ -1,18 +1,18 @@
 /**********************************
-º¯Êý¹¦ÄÜ:ÒÔÖ¸¶¨µÄÁÐÊýÏÔÊ¾Ò»Î¬Êý×éµÄÊý×Ö
-²ÎÊý1:Ò»Î¬Êý×é
-²ÎÊý2:Êý×éÖÐËùº¬ÔªËØµÄ¸öÊý
-²ÎÊý3:Ã¿¸öÊý¾ÝÔªËØµÄ×Ö³¤£¬Ò»°ãÊÇ sizeof(float)µÈ
-²ÎÊý4:Ã¿ÐÐÏÔÊ¾µÄ¸öÊý(ÁÐÊý)
-²ÎÊý5:ÔªËØÖ®¼äµÄ·Ö¸ô·û
-²ÎÊý6:¾ßÌåÏÔÊ¾·½Ê½
-·µ»ØÖµ:ÎÞ
-ËùÐè±ê×¼¿âÎÄ¼þ:stdio.h
-ËµÃ÷:Ê¹ÓÃÁË void* ¿ÉÒÔ´«ÈëÈÎºÎÖÖÀàµÄÊý×é£»ÓÃº¯ÊýÖ¸Õë´«Èë¾ßÌåµÄÏÔÊ¾²Ù×÷£¬ÐÎ²ÎÒ²ÓÃ void* ²»ÄÜ´«Èë¾ßÌåÀàÐÍ
-     ÏÂ¸½ÉÏÁËÒ»¸ö¾ßÌåµÄº¯ÊýÖ¸ÕëµÄÊµÏÖÑù×Ó
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2012-12-22
-ÐÞ¸ÄÊ±¼ä:2016-01-08
+å‡½æ•°åŠŸèƒ½:ä»¥æŒ‡å®šçš„åˆ—æ•°æ˜¾ç¤ºä¸€ç»´æ•°ç»„çš„æ•°å­—
+å‚æ•°1:ä¸€ç»´æ•°ç»„
+å‚æ•°2:æ•°ç»„ä¸­æ‰€å«å…ƒç´ çš„ä¸ªæ•°
+å‚æ•°3:æ¯ä¸ªæ•°æ®å…ƒç´ çš„å­—é•¿ï¼Œä¸€èˆ¬æ˜¯ sizeof(float)ç­‰
+å‚æ•°4:æ¯è¡Œæ˜¾ç¤ºçš„ä¸ªæ•°(åˆ—æ•°)
+å‚æ•°5:å…ƒç´ ä¹‹é—´çš„åˆ†éš”ç¬¦
+å‚æ•°6:å…·ä½“æ˜¾ç¤ºæ–¹å¼
+è¿”å›žå€¼:æ— 
+æ‰€éœ€æ ‡å‡†åº“æ–‡ä»¶:stdio.h
+è¯´æ˜Ž:ä½¿ç”¨äº† void* å¯ä»¥ä¼ å…¥ä»»ä½•ç§ç±»çš„æ•°ç»„ï¼›ç”¨å‡½æ•°æŒ‡é’ˆä¼ å…¥å…·ä½“çš„æ˜¾ç¤ºæ“ä½œï¼Œå½¢å‚ä¹Ÿç”¨ void* ä¸èƒ½ä¼ å…¥å…·ä½“ç±»åž‹
+     ä¸‹é™„ä¸Šäº†ä¸€ä¸ªå…·ä½“çš„å‡½æ•°æŒ‡é’ˆçš„å®žçŽ°æ ·å­
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2012-12-22
+ä¿®æ”¹æ—¶é—´:2016-01-08
 **************************************/
 void showArray(const void *array, size_t num, size_t size, size_t cols, char ch, void (*print_)(void*))
 {
@@ -26,14 +26,14 @@ void showArray(const void *array, size_t num, size_t size, size_t cols, char ch,
 			putchar('\n');
 		else
 			putchar(ch);
-		//ÎÞ²î±ðµÄµØÖ·£¬¾Í¿´ÒÆ¶¯¶àÉÙ¸ö×Ö½Ú´ú±íÏÂÒ»¸öÊý×ÖÁË
+		//æ— å·®åˆ«çš„åœ°å€ï¼Œå°±çœ‹ç§»åŠ¨å¤šå°‘ä¸ªå­—èŠ‚ä»£è¡¨ä¸‹ä¸€ä¸ªæ•°å­—äº†
 		p += size;
 	}
 	print_(p);
 	putchar('\n');
 }
 
-//¾ßÌå print µÄÒ»¸öÊµÀý
+//å…·ä½“ print çš„ä¸€ä¸ªå®žä¾‹
 void print(void *p)
 {
 	double*temp = (double *)p;
@@ -43,16 +43,16 @@ void print(void *p)
 
 
 /**********************************
-º¯Êý¹¦ÄÜ:ÒÔÖ¸¶¨µÄÁÐÊýÏÔÊ¾Ò»Î¬Êý×éµÄÊý×Ö
-²ÎÊý1:Ò»Î¬Êý×é
-²ÎÊý2:Êý×éÖÐËùº¬ÔªËØµÄ¸öÊý
-²ÎÊý3:Ã¿ÐÐÏÔÊ¾µÄ¸öÊý(ÁÐÊý)
-·µ»ØÖµ:ÎÞ
-ËùÐè±ê×¼¿âÎÄ¼þ:stdio.h; math.h
-ËµÃ÷:¾É°æ±¾
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2015-12-22
-ÐÞ¸ÄÊ±¼ä:
+å‡½æ•°åŠŸèƒ½:ä»¥æŒ‡å®šçš„åˆ—æ•°æ˜¾ç¤ºä¸€ç»´æ•°ç»„çš„æ•°å­—
+å‚æ•°1:ä¸€ç»´æ•°ç»„
+å‚æ•°2:æ•°ç»„ä¸­æ‰€å«å…ƒç´ çš„ä¸ªæ•°
+å‚æ•°3:æ¯è¡Œæ˜¾ç¤ºçš„ä¸ªæ•°(åˆ—æ•°)
+è¿”å›žå€¼:æ— 
+æ‰€éœ€æ ‡å‡†åº“æ–‡ä»¶:stdio.h; math.h
+è¯´æ˜Ž:æ—§ç‰ˆæœ¬
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2015-12-22
+ä¿®æ”¹æ—¶é—´:
 **************************************/
 void displayNum(float *array, const int number, const int cols)
 {
@@ -66,7 +66,7 @@ void displayNum(float *array, const int number, const int cols)
 	{
 		for(j=0; j<cols-1; j++)
 		{
-			//ÕâÀï¿ÉÓÃ*array£¬µ«ÓÃarray[]¸üÐÎÏóºÍºÃ¿Ø
+			//è¿™é‡Œå¯ç”¨*arrayï¼Œä½†ç”¨array[]æ›´å½¢è±¡å’Œå¥½æŽ§
 			printf("%10f,",array[cols*i+j]);
 		}
 		printf("%10f\n",array[cols*i+j]);

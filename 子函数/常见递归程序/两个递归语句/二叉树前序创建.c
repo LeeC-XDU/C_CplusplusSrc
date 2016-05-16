@@ -1,10 +1,10 @@
 /**********************************
-º¯Êý¹¦ÄÜ:¶þ²æÊ÷µÄÇ°ÐòµÝ¹é´´½¨
-²ÎÊý1(Output):¶þ²æÊ÷Ö¸Õë
-·µ»ØÖµ:ÎÞ
-ËµÃ÷:
-×÷Õß: Lee.C
-Íê³ÉÊ±¼ä:2016-05-01
+å‡½æ•°åŠŸèƒ½:äºŒå‰æ ‘çš„å‰åºé€’å½’åˆ›å»º
+å‚æ•°1(Output):äºŒå‰æ ‘æŒ‡é’ˆ
+è¿”å›žå€¼:æ— 
+è¯´æ˜Ž:
+ä½œè€…: Lee.C
+å®Œæˆæ—¶é—´:2016-05-01
 **************************************/
 void CreateBiTree(BiTree *T)
 {
@@ -12,7 +12,7 @@ void CreateBiTree(BiTree *T)
 	scanf("%c", &ch);
 	if(ch == '#')
 		*T = NULL;
-	//ÉÏ±ßµÄÒ»¾ä¿É¸ÄÎª { *T = NULL; return; } Ôò¿ÉÒÔÊ¡ÂÔÏÂÃæµÄ else ¹Ø¼ü×Ö
+	//ä¸Šè¾¹çš„ä¸€å¥å¯æ”¹ä¸º { *T = NULL; return; } åˆ™å¯ä»¥çœç•¥ä¸‹é¢çš„ else å…³é”®å­—
 	else
 	{
 		*T = (BiTree)malloc(sizeof(BiTree));

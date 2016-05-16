@@ -55,7 +55,7 @@ bool Push(SqStack *S, const Item *e)
 		return false;
 	}
 	
-	//ÓÉÓÚ³õÊÔ×´Ì¬ÊÇ -1£¬ËùÒÔÒªÏÈ¼Ó1£¬ÔÙÓÃ
+	//ç”±äºåˆè¯•çŠ¶æ€æ˜¯ -1ï¼Œæ‰€ä»¥è¦å…ˆåŠ 1ï¼Œå†ç”¨
 	S->data[++S->top] = (*e);
 	return true;
 }

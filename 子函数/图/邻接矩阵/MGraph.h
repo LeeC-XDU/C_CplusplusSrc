@@ -1,20 +1,20 @@
 #ifndef MGRAPH_H_
 #define MGRAPH_H_
 
-//¶¨Òå½ÚµãÀàĞÍ
+//å®šä¹‰èŠ‚ç‚¹ç±»å‹
 typedef char VertexType;
-//¶¨Òå±ßÉÏµÄ¶«Î÷£¬¿ÉÄÜÊÇÈ¨ÖØ£¬Ò²¿ÉÒÔÓĞÆäËû£¬»òÕßÒ»¸ö½á¹¹Ìå£¬ÄÚ°üº¬ºÜ¶à¶«Î÷
+//å®šä¹‰è¾¹ä¸Šçš„ä¸œè¥¿ï¼Œå¯èƒ½æ˜¯æƒé‡ï¼Œä¹Ÿå¯ä»¥æœ‰å…¶ä»–ï¼Œæˆ–è€…ä¸€ä¸ªç»“æ„ä½“ï¼Œå†…åŒ…å«å¾ˆå¤šä¸œè¥¿
 typedef int EdgeType;
 
-//¶¨Òå×î´ó½ÚµãÊı
+//å®šä¹‰æœ€å¤§èŠ‚ç‚¹æ•°
 #define MAXVEXNUM 100
 
 
 typedef struct
 {
-	VertexType vexs[MAXVEXNUM];				//¶¥µã±í
-	EdgeType arc[MAXVEXNUM][MAXVEXNUM];		//ÁÚ½Ó¾ØÕó
-	int vertexesNum, edgesNum;				//µãÊıÓë±ßÊı
+	VertexType vexs[MAXVEXNUM];				//é¡¶ç‚¹è¡¨
+	EdgeType arc[MAXVEXNUM][MAXVEXNUM];		//é‚»æ¥çŸ©é˜µ
+	int vertexesNum, edgesNum;				//ç‚¹æ•°ä¸è¾¹æ•°
 }MGraph;
 
 void CreateUndirMGraph(MGraph *G);

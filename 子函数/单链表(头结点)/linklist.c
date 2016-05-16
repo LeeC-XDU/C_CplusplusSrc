@@ -33,7 +33,7 @@ int InitList(LinkList *L)
 /**************************************************
 函数功能:销毁链表
 参数1(Output):链表头指针
-参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则为NULL
+参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则传入NULL
 返回值:销毁成功返回1，失败返回0
 说明:与清空链表不同，本函数把头结点的空间也释放了
 作者: Lee.C
@@ -43,7 +43,7 @@ int InitList(LinkList *L)
 **************************************************/
 int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 {
-	LNode * current = NULL;
+	LNode *current = NULL;
 	while((*L))
 	{
 		current =(*L)->next;
@@ -73,7 +73,7 @@ int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 	assert( !L );
 	assert( L->next );
 
-	LNode * current = NULL;
+	LNode *current = NULL;
 	size_t i = 0;
 	
 	for(i=0; i<num; i++)
@@ -110,8 +110,8 @@ int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 	 * prior : 指向current所指向的上一个节点的指针
 	           初始值为链表头节点
 	*******************************************/
-	LNode * current = NULL;
-	LNode * prior = L;
+	LNode *current = NULL;
+	LNode *prior = L;
 	size_t i = 0;
 	
 	for(i=0; i<num; i++)
@@ -130,9 +130,9 @@ int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 /**************************************************
 函数功能:清空链表
 参数1:链表头指针
-参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则为NULL
+参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则传入NULL
 返回值:清空成功返回1，失败返回0
-说明:与销毁链表不同，本函数保留头指针的存储空间
+说明:与销毁链表不同，本函数保留头节点
 作者: Lee.C
 完成时间:2016-05-04
 修改时间:
@@ -147,8 +147,8 @@ int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 	             初始值为链表第一个节点的指针
 	 * posterior : 指向current所指向的下一个节点的指针
 	*******************************************/
-	LinkList current = L->next;
-	LinkList posterrior = NULL;
+	LNode *current = L->next;
+	LNode *posterrior = NULL;
 	
 	while( current )
 	{
@@ -201,7 +201,7 @@ size_t ListLength(const LinkList L)
 	size_t length = 0;
 	
 	//指向头节点的指针
-	LinkList current = L->next;
+	LNode *current = L->next;
 
 	while(current)
 	{
@@ -242,8 +242,8 @@ void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void 
 	 * current : 新分配的待插入的节点
 	 * priorPos : 记录着哪个节点，从第1个节点算起
 	*******************************************/
-	LinkList prior = L;
-	LNode *current;
+	LNode *prior = L;
+	LNode *current = NULL;
 	size_t priorPos = 1;
 
 
@@ -259,7 +259,7 @@ void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void 
 	if(!prior || priorPos > n)
 	{
 		fputs("Call InsertItem() ERROR(1) !\n",stdout);
-		fprintf(stdout, "The List`s length is %u,the insert location %u is overflow\n", ListLength(L), n);
+		fprintf(stdout, "The List`s length is %lu,the insert location %lu is overflow\n", ListLength(L), n);
 		exit(EXIT_FAILURE);
 	}
 		 
@@ -304,11 +304,11 @@ void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assg
 	 * current : 要删除的节点
 	 * priorPos : 记录着哪个节点，从第1个节点算起
 	*******************************************/
-	LinkList prior = L, current = NULL;
+	LNode *prior = L, *current = NULL;
 	size_t priorPos = 1;
 
 
-	//前一个条件保证只能 prior 只能指向最后一个节点的前一个节点
+	//前一个条件保证 prior 最多只能指向最后一个节点的前一个节点
 	while(prior->next && priorPos < n)
 	{
 		prior = prior->next;
@@ -318,7 +318,7 @@ void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assg
 	if(!prior->next || priorPos > n)
 	{
 		fputs("Call DeleteItem() ERROR!\n", stdout);
-		fprintf(stdout, "The List`s length is %u, the delete location %u is overflow\n", ListLength(L), n);
+		fprintf(stdout, "The List`s length is %lu, the delete location %lu is overflow\n", ListLength(L), n);
 		exit(EXIT_FAILURE);
 	}
 	
@@ -355,7 +355,7 @@ void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*A
 	             初始值为指向链表第一个元素的指针
 	 * currentPos : 待获取处的节点位置，从第1个节点算起
 	*******************************************/
-	LinkList current = L->next;
+	LNode *current = L->next;
 	size_t currentPos = 1;
 
 	while(current && currentPos < n)
@@ -367,7 +367,7 @@ void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*A
 	if(!current || currentPos > n)
 	{
 		fputs("Call GetItem() ERROR !\n", stdout);
-		fprintf(stdout, "The List`s length is %u,the get location %u is overflow\n", ListLength(L), n);
+		fprintf(stdout, "The List`s length is %lu,the get location %lu is overflow\n", ListLength(L), n);
 		exit(EXIT_FAILURE);
 	}
 
@@ -391,14 +391,13 @@ size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare
 {
 	assert(!L);
 	assert(!e);
-	assert(!Compare);
 
 	/*******************************************
 	 * current : 指向链表待获取处的节点，
 	             初始值为指向链表第一个元素的指针
 	 * index : 匹配处的索引
 	*******************************************/
-	LinkList current = L->next;
+	LNode *current = L->next;
 	size_t index = 0;
 
 
@@ -407,7 +406,7 @@ size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare
 		index++;
 		if(Compare(&current->data, e))
 			return index;
-		current=current->next;
+		current = current->next;
 	}
 
 	return index;
@@ -433,7 +432,7 @@ void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e))
 	 * current : 指向链表待获取处的节点，
 	             初始值为指向链表第一个元素的指针
 	*******************************************/
-	LinkList current = L->next;
+	LNode *current = L->next;
 	while(current)
 	{
 		(*pfun)(&current->data);
@@ -458,7 +457,7 @@ void ReplaceItem(LinkList L,unsigned int i,LinkListItem e)
 	if(!current || j>i)
 	{
 		printf("Call ReplcarItem() ERROR !\n");
-		printf("The List`s length is %u,the replace location %u is overflow\n",ListLength(L),i);
+		printf("The List`s length is %lu,the replace location %lu is overflow\n",ListLength(L),i);
 		exit(0);
 	}
 
