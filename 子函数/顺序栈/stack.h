@@ -3,35 +3,39 @@
 
 #include <stddef.h>
 
+//存储空间的初始分配量
+#define STACK_INIT_SIZE 100
+//存储空间分配增量
+#define STACK_INCREMENT 10
+
 /*
 typedef struct item
 {
 	int a;
 }Item;
 */
-typedef char Item;
+typedef char StackItem;
 
 typedef struct stack
 {
-	Item *base;
-	Item *top;
-	size_t stacksize;		//注意这个是记录的栈的长度呢还是栈的大小啊？
+	StackItem *base;
+	StackItem *top;
+	
+	//记录栈中所占内存空间的大小
+	size_t stackSize;
 }SqStack;
 
 
 int InitStack(SqStack *S);
 int DestoryStack(SqStack *S);
 
-int StackIsEmpty(SqStack S);
 void ClearStack(SqStack *S);
-size_t StackLength(SqStack);	//本人把栈的大小等同于栈的长度了，所以这个函数没用了
+int StackIsEmpty(const SqStack *S);
+size_t StackLength(const SqStack *S);
 
-Item GetTop(SqStack S);	//这仅是得到栈顶元素，栈本身不变，出栈则栈的指针会发生变化
-
-void Push(SqStack *S,Item e);
-Item Pop(SqStack *S);
-
-void FunStack(SqStack S,void (*pfun)(Item));
+void GetTop(const SqStack *S, StackItem *e);
+void Push(SqStack *S, const StackItem *e);
+void Pop(SqStack *S, StackItem *e);
 
 
 #endif

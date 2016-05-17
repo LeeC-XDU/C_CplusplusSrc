@@ -1,83 +1,204 @@
 #include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <string.h>
 
-
+/**************************************************
+函数功能:初始化栈，分配初始空间，建立一个空栈
+参数1(Output):栈指针
+返回值:初始化成功返回1，失败返回0
+说明:
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
 int InitStack(SqStack *S)
 {
-	S->top=NULL;	//直接这样写就可以，用malloc(0),或许更有利于移植。
-	S->base=NULL;
-	S->stacksize=0;
+	S->base = (StackItem *)malloc(STACK_INIT_SIZE * sizeof(StackItem));
+	if(!S->base)
+	{
+		fputs("Call InitStack() error, memory allocation error\n", stdout);
+		exit(EXIT_FAILURE);
+	}
+	memset(S->base, 0, STACK_INIT_SIZE * sizeof(StackItem));
+	S->top = S->base;
+	S->stackSize = STACK_INIT_SIZE;
 
-	return true;
+	return 1;
 }
 
+/**************************************************
+函数功能:销毁栈，释放栈空间
+参数1(Output):栈指针
+返回值:销毁成功返回1，失败返回0
+说明:S->top是相对于S->base的栈偏移量，
+     不是一个新的分配空间，无需释放
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
 int DestoryStack(SqStack *S)
 {
-	free(S->base);		//无需释放栈顶指针，它与栈底指针本质是一个
-
-	return true;
-}
-
-int StackIsEmpty(SqStack S)
-{
-	if(S.base==S.top)
-		return true;
-	else
-		return false;
-}
-
-void ClearStack(SqStack *S)	//销魂并重新初始化了栈
-{
-	free(S->base);
-
-	S->top=NULL;
-	S->base=NULL;
-	S->stacksize=0;
-}
-
-Item GetTop(SqStack S)
-{
-	if(StackIsEmpty(S))
-	{
-		printf("The stack is empty!\n");
-		exit(0);
-	}
-
-	return *(S.top-1);
-}
-
-void Push(SqStack *S,Item e)
-{
-	if(! S->base)
-	{
-		S->base=(Item*)malloc(2*sizeof(Item));		//这里分配两个空间,一个给栈底数据,一个给栈顶
-		S->top=S->base;								//数据,作为一个合理的且不分配有效数据的空间
-	}
-	else
-	{
-		S->base=(Item*)realloc(S->base,(S->stacksize+2)*sizeof(Item));
-		S->top=S->base+S->stacksize;
-	}
+	//此三条判断是否有有效的空间可用
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
 	
-	*S->top++=e;
-	S->stacksize++;
+	
+	//无需释放栈顶指针，它与栈底指针本质是一个
+	free(S->base);
+	S->base = NULL;
+	S->top = NULL;
+	
+	S->stackSize = 0;
+
+	return 1;
 }
 
-Item Pop(SqStack *S)
+
+/**************************************************
+函数功能:清空栈
+参数1(Output):栈指针
+返回值:无
+说明:只清空栈中数据，不销毁栈空间，top指针归‘零’
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
+void ClearStack(SqStack *S)
 {
-	if(StackIsEmpty(*S))
+	//此三条判断是否有有效的空间可用
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
+	
+	memset(S->base, 0, S->stackSize * sizeof(StackItem));
+	S->top = S->base;
+
+}
+
+/**************************************************
+函数功能:判断栈是否为空
+参数1:栈指针
+返回值:为空返回1，不为空返回0
+说明:
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
+int StackIsEmpty(const SqStack *S)
+{
+	assert(!S);
+	
+	if(S->base == S->top)
+		return 1;
+	else
+		return 0;
+}
+
+
+/**************************************************
+函数功能:求栈中元素个数
+参数1:栈指针
+返回值:栈中元素个数
+说明:
+作者: Lee.C
+完成时间:2016-05-16
+**************************************************/
+size_t StackLength(const SqStack *S)
+{
+	//此三条判断是否指针指向有效的空间
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
+	
+	return (size_t)(S->top-S->base);
+}
+
+
+/**************************************************
+函数功能:获得栈顶元素
+参数1:栈指针
+参数2(Output):返回元素
+返回值:无
+说明:
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
+void GetTop(const SqStack *S, StackItem *e)
+{
+	//此三条判断是否指针指向有效的空间
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
+	//不能是空栈
+	assert(S->base == S->top);
+
+	(*e) = *(S->top-1);
+}
+
+
+/**************************************************
+函数功能:压栈
+参数1(Output):栈指针
+参数2:待压栈元素
+返回值:无
+说明:
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
+void Push(SqStack *S, const StackItem *e)
+{
+	//此三条判断是否指针指向有效的空间
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
+	
+	if(S->top-S->base >= S->stackSize)
 	{
-		printf("The stack is empty!\n");
-		exit(0);
+		S->base = (StackItem*)realloc(S->base, (S->stackSize+STACK_INCREMENT) * sizeof(StackItem));
+		if(!S->base)
+		{
+			fputs("Call Push() error, memory allocation error\n", stdout);
+			exit(EXIT_FAILURE);
+		}
+		S->top = S->base + S->stackSize;
+		S->stackSize += STACK_INCREMENT;
 	}
-	S->stacksize--;
 
-	return *--S->top;
+	*S->top++ = *e;
+
 }
 
-void FunStack(SqStack S,void (*pfun)(Item))
+
+/**************************************************
+函数功能:出栈，并返回出栈元素
+参数1(Output):栈指针
+参数2(Output):出栈元素
+返回值:无
+说明:
+作者: Lee.C
+完成时间:2015-05-10
+修改时间:2016-05-16
+修改说明:代码重构
+**************************************************/
+void Pop(SqStack *S, StackItem *e)
 {
-	while(S.base!=S.top)
-		(*pfun)(*S.base++);
+	//此三条判断是否指针指向有效的空间
+	assert(!S);
+	assert(!S->base);
+	assert(!S->top);
+	//不能是空栈
+	assert(S->base == S->top);
+	
+	(*e) = *--S->top;
 }
