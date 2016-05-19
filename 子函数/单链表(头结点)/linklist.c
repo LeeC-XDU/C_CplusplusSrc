@@ -70,8 +70,8 @@ int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 {
 	//头插法必须要求头指针指向头节点且头节点的next为NULL
-	assert( !L );
-	assert( L->next );
+	assert( L );
+	assert( !L->next );
 
 	LNode *current = NULL;
 	size_t i = 0;
@@ -102,8 +102,8 @@ int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 {
 	//尾插法必须要求头指针指向头节点且头节点的next为NULL
-	assert( !L );
-	assert( L->next );
+	assert( L );
+	assert( !L->next );
 
 	/*******************************************
 	 * current : 指向链表当前要操作节点的指针，
@@ -140,7 +140,7 @@ int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 **************************************************/
 int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 {
-	assert( !L );
+	assert( L );
 
 	/*******************************************
 	 * current : 指向链表当前要操作节点的指针，
@@ -176,7 +176,7 @@ int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 **************************************************/
 int IsEmptyList(const LinkList L)
 {
-	assert( !L );
+	assert( L );
 
 	if(!L->next)
 		return 1;
@@ -196,7 +196,7 @@ int IsEmptyList(const LinkList L)
 **************************************************/
 size_t ListLength(const LinkList L)
 {
-	assert( !L );
+	assert( L );
 
 	size_t length = 0;
 	
@@ -232,9 +232,8 @@ size_t ListLength(const LinkList L)
 void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
 	//不断言 L->next ，当只有头结点时，也可以在第一个位置插入元素
-	assert(!L);
-	assert(n < 1);
-	assert(n > ListLength(L));
+	assert(L);
+	assert(n >= 1 && n <= ListLength(L));
 
 	/*******************************************
 	 * prior : 指向链表当前要插入节点位置的前一个节点，
@@ -293,10 +292,9 @@ void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void 
 **************************************************/
 void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
-	assert(!L);
-	assert(!L->next);
-	assert(n < 1);
-	assert(n > ListLength(L));
+	assert(L);
+	assert(L->next);
+	assert(n >= 1 && n <= ListLength(L));
 	
 	/*******************************************
 	 * prior : 指向链表当前要插入节点位置的前一个节点，
@@ -345,10 +343,9 @@ void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assg
 **************************************************/
 void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
-	assert(!L);
-	assert(!L->next);
-	assert(n < 1);
-	assert(n > ListLength(L));
+	assert(L);
+	assert(L->next);
+	assert(n >= 1 && n <= ListLength(L));
 	
 	/*******************************************
 	 * current : 指向链表待获取处的节点，
@@ -389,8 +386,8 @@ void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*A
 **************************************************/
 size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem))
 {
-	assert(!L);
-	assert(!e);
+	assert(L);
+	assert(e);
 
 	/*******************************************
 	 * current : 指向链表待获取处的节点，
@@ -426,7 +423,7 @@ size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare
 **************************************************/
 void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e))
 {
-	assert(!L);
+	assert(L);
 	
 	/*******************************************
 	 * current : 指向链表待获取处的节点，

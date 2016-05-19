@@ -43,9 +43,9 @@ int InitStack(SqStack *S)
 int DestoryStack(SqStack *S)
 {
 	//此三条判断是否有有效的空间可用
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	
 	
 	//无需释放栈顶指针，它与栈底指针本质是一个
@@ -72,9 +72,9 @@ int DestoryStack(SqStack *S)
 void ClearStack(SqStack *S)
 {
 	//此三条判断是否有有效的空间可用
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	
 	memset(S->base, 0, S->stackSize * sizeof(StackItem));
 	S->top = S->base;
@@ -93,7 +93,7 @@ void ClearStack(SqStack *S)
 **************************************************/
 int StackIsEmpty(const SqStack *S)
 {
-	assert(!S);
+	assert(S);
 	
 	if(S->base == S->top)
 		return 1;
@@ -113,9 +113,9 @@ int StackIsEmpty(const SqStack *S)
 size_t StackLength(const SqStack *S)
 {
 	//此三条判断是否指针指向有效的空间
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	
 	return (size_t)(S->top-S->base);
 }
@@ -135,9 +135,9 @@ size_t StackLength(const SqStack *S)
 void GetTop(const SqStack *S, StackItem *e)
 {
 	//此三条判断是否指针指向有效的空间
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	//不能是空栈
 	assert(S->base == S->top);
 
@@ -159,9 +159,9 @@ void GetTop(const SqStack *S, StackItem *e)
 void Push(SqStack *S, const StackItem *e)
 {
 	//此三条判断是否指针指向有效的空间
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	
 	if(S->top-S->base >= S->stackSize)
 	{
@@ -194,9 +194,9 @@ void Push(SqStack *S, const StackItem *e)
 void Pop(SqStack *S, StackItem *e)
 {
 	//此三条判断是否指针指向有效的空间
-	assert(!S);
-	assert(!S->base);
-	assert(!S->top);
+	assert(S);
+	assert(S->base);
+	assert(S->top);
 	//不能是空栈
 	assert(S->base == S->top);
 	
