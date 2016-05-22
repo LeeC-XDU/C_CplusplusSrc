@@ -10,11 +10,11 @@ int Str2Int(const char *str)
 {
 	assert(str);
 
-	int num = 0, negativeFlag = 0;
+	int num = 0, sign = 1;
 
 	if(*str == '-')
 	{
-		negativeFlag = 1;
+		sign = -1;
 		str++;
 	}
 
@@ -24,9 +24,6 @@ int Str2Int(const char *str)
 		str++;
 	}
 
-	if(negativeFlag)
-		num *= -1;
-
-	return num;
+	return num * sign;
 	
 }
