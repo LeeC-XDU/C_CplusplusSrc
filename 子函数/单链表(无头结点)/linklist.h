@@ -1,6 +1,10 @@
 #ifndef _LINKLIST__
 #define _LINKLIST__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stddef.h>
 
 typedef struct LinkListItem
@@ -34,5 +38,8 @@ void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*A
 size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem));
 void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e));
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef __STACK_
 #define __STACK_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stddef.h>
 
 //存储空间的初始分配量
@@ -37,5 +41,9 @@ void GetTop(const SqStack *S, StackItem *e);
 void Push(SqStack *S, const StackItem *e);
 void Pop(SqStack *S, StackItem *e);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
