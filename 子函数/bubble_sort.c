@@ -11,7 +11,7 @@
 修改时间:2016-05-28
 修改说明:规范变量命名和类型等
 **************************************/
-void bubble_sort(int *array, const size_t num)
+void bubble_sort(int *array, size_t num)
 {
 	assert(array);
 	/**********************************************

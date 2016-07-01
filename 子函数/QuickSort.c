@@ -7,7 +7,7 @@
 作者: Lee.C
 完成时间:2016-05-31
 **************************************/
-void QuickSort(int *array, const size_t num)
+void QuickSort(int *array, size_t num)
 {
 	assert(array);
 
@@ -24,7 +24,7 @@ void QuickSort(int *array, const size_t num)
 作者: Lee.C
 完成时间:2016-05-31
 **************************************/
-void QSort(int *array, const size_t low, const size_t high)
+void QSort(int *array, size_t low, size_t high)
 {
 	size_t pivot;
 
@@ -67,7 +67,8 @@ void QSort2(int *array, size_t low, size_t high)
 参数2:排序区间起始下标
 参数3:排序区间末尾下标
 返回值:枢轴元素下标
-说明:挖坑填坑法
+说明:(选定枢轴量，找枢轴点)
+	 挖坑填坑法
      取出第一个元素，作为枢轴元素，该位置作为坑；
 	 从末尾向前找比枢轴元素小的元素，找到去填坑，挖出本坑；
 	 从被填坑的下一个元素开始，找比枢轴元素大的元素，找到去填坑，挖出本坑；

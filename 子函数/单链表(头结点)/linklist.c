@@ -10,12 +10,14 @@
 返回值:初始化成功返回1，失败返回0
 说明:为头指针分配存储空间就是为整个链表创建头节点了
      头节点的数据域没存任何东西。
+头文件: <stdlib.h>
+        <stdio.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-int InitList(LinkList *L)
+Status InitList(LinkList *L)
 {
 	(*L) = (LNode *)malloc(sizeof(LNode));
 	if(!*L)
@@ -26,7 +28,7 @@ int InitList(LinkList *L)
 
 	(*L)->next = NULL;
 	
-	return 1;
+	return TRUE;
 }
 
 
@@ -36,15 +38,16 @@ int InitList(LinkList *L)
 参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则传入NULL
 返回值:销毁成功返回1，失败返回0
 说明:与清空链表不同，本函数把头结点的空间也释放了
+头文件: <stdlib.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
+Status DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 {
 	LNode *current = NULL;
-	while((*L))
+	while( *L )
 	{
 		current =(*L)->next;
 		FreeLinkListItem(&(*L)->data);
@@ -52,7 +55,7 @@ int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 		*L = current;
 	}
 
-	return 1;
+	return TRUE;
 }
 
 /**************************************************
@@ -62,12 +65,14 @@ int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 参数3:函数指针，指出为链表数据赋值的方式
 返回值:创建成功返回1，失败返回0
 说明:
+头文件: <assert.h>
+        <stdlib.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
+Status CreateListHead(LinkList L, size_t num, void (*InPut)(LinkListItem *e))
 {
 	//头插法必须要求头指针指向头节点且头节点的next为NULL
 	assert( L );
@@ -84,7 +89,7 @@ int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 		L->next = current;
 	}
 	
-	return 1;
+	return TRUE;
 }
 
 /**************************************************
@@ -94,12 +99,12 @@ int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 参数3:函数指针，指出为链表数据赋值的方式
 返回值:创建成功返回1，失败返回0
 说明:
+头文件: <assert.h>
+        <stdlib.h>
 作者: Lee.C
 完成时间:2016-05-04
-修改时间:
-修改说明:
 **************************************************/
-int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
+Status CreateListTail(LinkList L, size_t num, void (*InPut)(LinkListItem *e))
 {
 	//尾插法必须要求头指针指向头节点且头节点的next为NULL
 	assert( L );
@@ -124,7 +129,7 @@ int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 	
 	current->next = NULL;
 
-	return 1;
+	return TRUE;
 }
 
 /**************************************************
@@ -133,12 +138,12 @@ int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e))
 参数2:函数指针，当LinkListItem中有需要动态分配内存的指针时调用，否则传入NULL
 返回值:清空成功返回1，失败返回0
 说明:与销毁链表不同，本函数保留头节点
+头文件: <assert.h>
+        <stdlib.h>
 作者: Lee.C
 完成时间:2016-05-04
-修改时间:
-修改说明:
 **************************************************/
-int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
+Status ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 {
 	assert( L );
 
@@ -161,7 +166,7 @@ int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 	//头节点的指针域设为空
 	L->next = NULL;
 
-	return 1;
+	return TRUE;
 }
 
 /**************************************************
@@ -169,19 +174,20 @@ int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e))
 参数1:链表头指针
 返回值:空返回1，非空返回0
 说明:
+头文件: <assert.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-int IsEmptyList(const LinkList L)
+Status IsEmptyList(const LinkList L)
 {
 	assert( L );
 
 	if(!L->next)
-		return 1;
+		return TRUE;
 	else
-		return 0;
+		return FALSE;
 }
 
 /**************************************************
@@ -189,6 +195,7 @@ int IsEmptyList(const LinkList L)
 参数1:链表头指针
 返回值:链表长度
 说明:
+头文件: <assert.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
@@ -224,12 +231,15 @@ size_t ListLength(const LinkList L)
      在第n个位置插入，原第n个元素变为第n+1个。
      当链表为空链表时，也可以在第一个位置插入；
 	 不能在第 ListLength(L)+1 处插入。
+头文件: <assert.h>
+        <stdlib.h>
+		<stdio.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
+void InsertLinkListItem(LinkList L, size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
 	//不断言 L->next ，当只有头结点时，也可以在第一个位置插入元素
 	assert(L);
@@ -285,12 +295,15 @@ void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void 
 返回值:无
 说明:删除位置从1开始，为第n个位置。
      当链表为空链表时，不能删除元素，所以在断言处比插入函数多了一句 assert(!L->next)；
+头文件: <assert.h>
+        <stdlib.h>
+		<stdio.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
+void DeleteLinkListItem(LinkList L, size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
 	assert(L);
 	assert(L->next);
@@ -336,12 +349,15 @@ void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assg
 参数4:函数指针，指出为数据赋值的方式
 返回值:无
 说明:
+头文件: <assert.h>
+        <stdlib.h>
+		<stdio.h>
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-04
 修改说明:代码重构
 **************************************************/
-void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
+void GetLinkListItem(const LinkList L, size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
 	assert(L);
 	assert(L->next);

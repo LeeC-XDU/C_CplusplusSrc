@@ -7,6 +7,11 @@ extern "C" {
 
 #include <stddef.h>
 
+#ifndef _STATUS__
+#define _STATUS__
+typedef enum { FALSE, TRUE } Status;
+#endif
+
 typedef struct LinkListItem
 {
 	int a;
@@ -19,20 +24,20 @@ typedef struct LNode
 	struct LNode *next;
 }LNode, *LinkList;
 
-int InitList(LinkList *L);
-int DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e));
+Status InitList(LinkList *L);
+Status DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e));
 
-int CreateListHead(LinkList L, const size_t num, void (*InPut)(LinkListItem *e));
-int CreateListTail(LinkList L, const size_t num, void (*InPut)(LinkListItem *e));
+Status CreateListHead(LinkList L, size_t num, void (*InPut)(LinkListItem *e));
+Status CreateListTail(LinkList L, size_t num, void (*InPut)(LinkListItem *e));
 
-int ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e));
-int IsEmptyList(const LinkList L);
+Status ClearList(LinkList L, void (*FreeLinkListItem)(LinkListItem *e));
+Status IsEmptyList(const LinkList L);
 size_t ListLength(const LinkList L);
 
-void InsertLinkListItem(LinkList L, const size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
-void DeleteLinkListItem(LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
+void InsertLinkListItem(LinkList L, size_t n, const LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
+void DeleteLinkListItem(LinkList L, size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
 
-void GetLinkListItem(const LinkList L, const size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
+void GetLinkListItem(const LinkList L, size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src));
 size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem));
 void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e));
 

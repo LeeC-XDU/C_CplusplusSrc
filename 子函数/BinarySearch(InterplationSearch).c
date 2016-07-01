@@ -5,10 +5,11 @@
 参数3:待查找元素
 返回值:key在数组array中的地址索引，没有返回NULL
 说明:本函数并没有改变array数组的值，但为了与返回值匹配，就没有用 const 修饰
+头文件: <assert.h>
 作者: Lee.C
 完成时间:2016-05-22
 **************************************/
-int *BinarySearch(int *array, const size_t num, const int key)
+int *BinarySearch(int *array, size_t num, int key)
 {
 	assert(array);
 

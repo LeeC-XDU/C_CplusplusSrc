@@ -10,5 +10,6 @@ int main(int argc, char *argv[])
 	if(argc < 4)
 	{
 		printf("Usage: %s fileName1 fileName2 fileName3\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
 }

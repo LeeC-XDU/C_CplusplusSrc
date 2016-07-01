@@ -10,7 +10,7 @@
 修改时间:2016-05-28
 修改说明:规范变量命名和类型等
 **************************************/
-void select_sort(int *array, const size_t num)
+void select_sort(int *array, size_t num)
 {
 	assert(array);
 	/*************************
@@ -31,4 +31,5 @@ void select_sort(int *array, const size_t num)
 			array[i] = array[min];
 			array[min] = temp;
 		}
+	}
 }
