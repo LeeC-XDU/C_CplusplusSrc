@@ -1,5 +1,14 @@
-#ifndef GRAPHADJLIST
-#define GRAPHADJLIST
+#ifndef GRAPHADJLIST__
+#define GRAPHADJLIST__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef _STATUS__
+#define _STATUS__
+typedef enum { FALSE, TRUE } Status;
+#endif
 
 //定义最大节点数
 #define MAXVEXNUM 100
@@ -13,7 +22,7 @@ typedef int EdgeType;
 //边表结点
 typedef struct EdgeNode
 {
-	int adjvex;					//邻接点域，存储该点在顶点表数组中的下标，也可以是一个结构体，存储顶点的编号，是否访问标识等信息
+	int adjvex;					//邻接点域，存储该点在顶点表数组中的下标
 	EdgeType weight;			//用于存储边信息，可以是一个结构体，保存边的权重，编号等
 	struct EdgeNode *next;
 }EdgeNode;
@@ -34,8 +43,13 @@ typedef struct
 
 void CreateUndirALGraph(GraphAdjList *G);
 void CreateALGraph(GraphAdjList *G);
-void Dijkstra(const GraphAdjList *G, const int srcNode, int *priorArray, int *weightArray);
+void DFSTraverse(GraphAdjList *G, void (*pfun)(VertexType *vex));
+void Dijkstra(const GraphAdjList *G, int srcNode, int *priorArray, int *weightArray);
 void DestoryALGraph(GraphAdjList *G);
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif

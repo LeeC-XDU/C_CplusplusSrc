@@ -37,10 +37,11 @@ Status InitList(LinkList *L)
 Status DestoryList(LinkList *L, void (*FreeLinkListItem)(LinkListItem *e))
 {
 	LNode *current = NULL;
-	while((*L))
+	while(*L)
 	{
 		current =(*L)->next;
-		FreeLinkListItem(&(*L)->data);
+		if(!FreeLinkListItem)
+			FreeLinkListItem(&(*L)->data);
 		free(*L);
 		*L = current;
 	}
@@ -203,7 +204,7 @@ size_t ListLength(const LinkList L)
 {
 	size_t length = 0;
 	
-	LNode *current=L;
+	LNode *current = L;
 
 	while(current)
 	{
@@ -378,7 +379,7 @@ void DeleteLinkListItem(LinkList *L, size_t n, LinkListItem *e, void (*Assgin)(L
 void GetLinkListItem(const LinkList L, size_t n, LinkListItem *e, void (*Assgin)(LinkListItem *dst, const LinkListItem *src))
 {
 	assert(L);
-	assert(n >= 1 && n <= ListLength(*L));
+	assert(n >= 1 && n <= ListLength(L));
 	
 	
 	/*******************************************
@@ -470,6 +471,74 @@ void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e))
 		(*pfun)(&current->data);
 		current = current->next;
 	}
+}
+
+/**************************************************
+函数功能:链表逆序（迭代式）
+参数1(Output):链表头指针
+返回值:无
+说明:部分解释可见笔记《数据结构——链表》
+头文件: <assert.h>
+作者: Lee.C
+完成时间:2016-07-22
+**************************************************/
+void ReverseLinkList(LinkList *L)
+{
+	assert(*L);
+	
+	LNode *post = (*L)->next;
+	LNode *prev = NULL;
+	
+	while(*L)
+	{
+		post = (*L)->next;
+		(*L)->next = prev;
+		prev = *L;
+		*L = post;
+	}
+	
+	*L = prev;
+}
+
+/**************************************************
+函数功能:链表逆序（递归式）
+参数1:辅助指针
+参数2(Output):链表头指针
+返回值:无
+说明:部分解释可见笔记《数据结构——链表》，第一个参数的初值为 L
+头文件: 无
+作者: Lee.C
+完成时间:2016-07-22
+**************************************************/
+void ReverseLinkListRecursion(LNode *p, LinkList *L)
+{
+	if(!p->next)
+	{
+		*L = p;
+		return;
+	}
+	ReverseLinkListRecursion(p->next, L);
+	//第一次递归出来，p为上一个副本了
+	p->next->next = p;
+	p->next = NULL;
+}
+
+
+LinkList ReverseLinkListRe(LNode *p)
+{
+    LNode *newHead;
+
+	if(!p->next)
+	{
+		return p;
+	}
+	//必须用这个变量一层一层的反上去
+	newHead = ReverseLinkListRe(p->next);
+	//第一次递归出来，p为上一个副本了
+	p->next->next = p;
+	p->next = NULL;
+
+	return newHead;
 }
 
 

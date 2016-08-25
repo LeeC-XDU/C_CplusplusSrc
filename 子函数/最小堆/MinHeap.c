@@ -14,10 +14,11 @@ static void MinHeapFixdown(MinHeap *H, const size_t index);
 返回值:无
 说明:这里是用int型数组初始化堆的，可以换其他类型，
      应与头文件中的MinHeapItem类型对应
+头文件:<assert.h>
 作者: Lee.C
 完成时间:2015-05-29
 **************************************/
-void CreateMinHeap(MinHeap *H, const int *array, const size_t num)
+void CreateMinHeap(MinHeap *H, const int *array, size_t num)
 {
 	assert(array);
 	
@@ -25,7 +26,7 @@ void CreateMinHeap(MinHeap *H, const int *array, const size_t num)
 	 *index : 代表当前操作的节点的索引下边，
 	          初始值为最后一个节点双亲节点的下标。
 	***************************************/
-	int index = (num-1) / 2;
+	int index = (num-2) / 2;
 
 	H->heapSize = num;
 	H->length = num;
@@ -59,6 +60,7 @@ void InsertMinHeapItem(MinHeap *H, const MinHeapItem *e)
 	if(H->length == H->heapSize)
 		H->heap = (MinHeapItem*)realloc(H->heap, (H->heapSize+MINHEAP_INCREMENT) * sizeof(MinHeapItem));
 
+	//在堆的最后一个位置插入元素，并向上调整
 	H->heap[H->length] = (*e);
 	MinHeapFixup(H, H->length);
 
@@ -78,6 +80,7 @@ void DeleteMinHeapItem(MinHeap *H)
 {
 	assert(H);
 	
+	//删除第一个位置的元素，把最后一个元素拿上来，并向下调整
 	H->heap[0] = H->heap[--H->length];
 	MinHeapFixdown(H, 0);
 }
@@ -129,7 +132,7 @@ void MinHeapSort(int *array, const size_t num)
 作者: Lee.C
 完成时间:2015-05-29
 **************************************/
-static void MinHeapFixup(MinHeap *H, const size_t index)
+static void MinHeapFixup(MinHeap *H, size_t index)
 {
 	assert(H);
 
@@ -167,13 +170,13 @@ static void MinHeapFixup(MinHeap *H, const size_t index)
 作者: Lee.C
 完成时间:2015-05-29
 **************************************/
-static void MinHeapFixdown(MinHeap *H, const size_t index)
+static void MinHeapFixdown(MinHeap *H, size_t index)
 {
 	assert(H);
 	
 	/*************************************
 	 *currentIndex : 当前节点索引
-	 *childIndex   : 当前节点孩子节点的索引
+	 *childIndex   : 当前节点左孩子节点的索引
 	 *fixupValue   : 待调整节点值
 	**************************************/
 	size_t currentIndex = index;

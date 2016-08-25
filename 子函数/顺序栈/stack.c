@@ -14,19 +14,19 @@
 修改时间:2016-05-16
 修改说明:代码重构
 **************************************************/
-int InitStack(SqStack *S)
+Status InitStack(SqStack *S)
 {
 	S->base = (StackItem *)malloc(STACK_INIT_SIZE * sizeof(StackItem));
 	if(!S->base)
 	{
-		fputs("Call InitStack() error, memory allocation error\n", stdout);
+		fputs("Call InitStack() error, memory allocation error\n", stderr);
 		exit(EXIT_FAILURE);
 	}
 	memset(S->base, 0, STACK_INIT_SIZE * sizeof(StackItem));
 	S->top = S->base;
 	S->stackSize = STACK_INIT_SIZE;
 
-	return 1;
+	return TRUE;
 }
 
 /**************************************************
@@ -40,7 +40,7 @@ int InitStack(SqStack *S)
 修改时间:2016-05-16
 修改说明:代码重构
 **************************************************/
-int DestoryStack(SqStack *S)
+Status DestoryStack(SqStack *S)
 {
 	//此三条判断是否有有效的空间可用
 	assert(S);
@@ -55,7 +55,7 @@ int DestoryStack(SqStack *S)
 	
 	S->stackSize = 0;
 
-	return 1;
+	return TRUE;
 }
 
 
@@ -91,14 +91,14 @@ void ClearStack(SqStack *S)
 修改时间:2016-05-16
 修改说明:代码重构
 **************************************************/
-int StackIsEmpty(const SqStack *S)
+Status StackIsEmpty(const SqStack *S)
 {
 	assert(S);
 	
 	if(S->base == S->top)
-		return 1;
+		return TRUE;
 	else
-		return 0;
+		return FALSE;
 }
 
 
@@ -139,7 +139,7 @@ void GetTop(const SqStack *S, StackItem *e)
 	assert(S->base);
 	assert(S->top);
 	//不能是空栈
-	assert(S->base == S->top);
+	assert(S->base != S->top);
 
 	(*e) = *(S->top-1);
 }
@@ -185,11 +185,13 @@ void Push(SqStack *S, const StackItem *e)
 参数1(Output):栈指针
 参数2(Output):出栈元素
 返回值:无
-说明:
+说明:e可以接受NULL
 作者: Lee.C
 完成时间:2015-05-10
 修改时间:2016-05-16
 修改说明:代码重构
+修改时间:2016-07-17
+修改说明:不想传出元素时，使e可以赋值为空
 **************************************************/
 void Pop(SqStack *S, StackItem *e)
 {
@@ -198,7 +200,10 @@ void Pop(SqStack *S, StackItem *e)
 	assert(S->base);
 	assert(S->top);
 	//不能是空栈
-	assert(S->base == S->top);
+	assert(S->base != S->top);
 	
-	(*e) = *--S->top;
+	S->top--;
+	
+	if(e)
+		(*e) = *S->top;
 }

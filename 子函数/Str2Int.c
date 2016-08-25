@@ -3,23 +3,42 @@
 参数1:整数型字符串
 返回值:转换后的证整数
 说明:遇到非可转换字符停止，第一个即为不可转换字符，返回0
+头文件:
 作者: Lee.C
 完成时间:2016-05-19
 **************************************/
 int Str2Int(const char *str)
 {
-	assert(str);
-
+	//定义整形的上限和下限
+	static const int MAX_INT = (int)( (unsigned)~0 >> 1 );
+	static const int MIN_INT = -(int)( (unsigned)~0 >> 1 ) - 1;
+	
 	int num = 0, sign = 1;
+	
+	//判断是否是空
+	if(str == 0)
+		return 0;
+	
+	//忽略行首空白
+	while(isspace(*str++)
+		continue;
 
-	if(*str == '-')
+	if(*str == '-' || *str == '+')
 	{
-		sign = -1;
+		if(*str == '-')
+			sign = -1;
 		str++;
 	}
 
-	while(*str && *str>='0' && *str <= '9')
+	while(isdigit(*str))
 	{
+		num = *str - '0';
+		if(sign>0 && (n>MAX_INT/10 || (n==MAX_INT/10 && c>MAX_INT%10)))
+		{
+			n = MAX_INT;
+			break;
+		}
+		else if(sign<0 && (n>(unsigned)
 		num = 10*num + (*str-'0');
 		str++;
 	}

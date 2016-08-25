@@ -7,6 +7,11 @@ extern "C" {
 
 #include <stddef.h>
 
+#ifndef _STATUS__
+#define _STATUS__
+typedef enum { FALSE, TRUE } Status;
+#endif
+
 //存储空间的初始分配量
 #define STACK_INIT_SIZE 100
 //存储空间分配增量
@@ -30,11 +35,11 @@ typedef struct stack
 }SqStack;
 
 
-int InitStack(SqStack *S);
-int DestoryStack(SqStack *S);
+Status InitStack(SqStack *S);
+Status DestoryStack(SqStack *S);
 
 void ClearStack(SqStack *S);
-int StackIsEmpty(const SqStack *S);
+Status StackIsEmpty(const SqStack *S);
 size_t StackLength(const SqStack *S);
 
 void GetTop(const SqStack *S, StackItem *e);

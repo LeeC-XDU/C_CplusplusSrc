@@ -10,9 +10,9 @@
 作者: Lee.C
 完成时间:2016-07-02
 ************************************************/
-size_t CountCol(const char *pChar)
+size_t CountWord(const char *pChar)
 {
-	size_t retNum = 0;
+	size_t retWordNum = 0;
 	Status borderFlag = TRUE;
 
 	while(*pChar)
@@ -22,12 +22,12 @@ size_t CountCol(const char *pChar)
 		//当字符不是空白且标志位已置位的情况下进入计数分支
 		else if(borderFlag)
 		{
-			retNum++;
+			retWordNum++;
 			borderFlag = FALSE;
 		}
 
 		pChar++;
 	}
 
-	return retNum;
+	return retWordNum;
 }

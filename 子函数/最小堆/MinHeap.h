@@ -18,11 +18,11 @@ typedef struct MinHeap
 	size_t heapSize;	/* 堆存储空间的大小 */
 }MinHeap;
 
-void CreateMinHeap(MinHeap *H, const int *array, const size_t num);
+void CreateMinHeap(MinHeap *H, const int *array, size_t num);
 void InsertMinHeapItem(MinHeap *H, const MinHeapItem *e);
 void DeleteMinHeapItem(MinHeap *H);
 
-void MinHeapSort(int *array, const size_t num);
+void MinHeapSort(int *array, size_t num);
 
 
 #ifdef __cplusplus

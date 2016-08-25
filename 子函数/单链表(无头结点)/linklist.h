@@ -43,6 +43,9 @@ void GetLinkListItem(const LinkList L, size_t n, LinkListItem *e, void (*Assgin)
 size_t LinkListLocateItem(const LinkList L, const LinkListItem *e, int (*Compare)(const LinkListItem *linkListElem, const LinkListItem *elem));
 void TraverLinkList(LinkList L, void (*pfun)(LinkListItem *e));
 
+void ReverseLinkListRecursion(LNode *p, LinkList *L);
+void ReverseLinkList(LinkList *L);
+
 #ifdef __cplusplus
 }
 #endif

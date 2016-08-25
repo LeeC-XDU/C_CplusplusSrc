@@ -8,7 +8,7 @@
 完成时间:2016-03-20
 修改时间:
 **************************************/
-int Fibonacci(int i)
+long long Fibonacci(unsigned int i)
 {
 	if(i<2)
 		return i == 0 ? 0 : 1;

@@ -4,15 +4,14 @@
 返回值:二进制形式中1的个数
 说明:
 头文件: <assert.h>
-        <stddef.h>
 作者: Lee.C
 完成时间:2016-06-19
 ******************************************/
-size_t countOne(int num)
+int countOne(int num)
 {
 	assert(num >= 0);
 	
-	size_t count = 0;
+	int count = 0;
 	
 	while(num)
 	{
