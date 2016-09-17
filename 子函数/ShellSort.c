@@ -13,7 +13,8 @@ void ShellSort(int *array, const size_t num)
 	
 	size_t i, j, gap;
 
-	for(gap=n/2; gap>0; gap /= 2)
+	//gap即指组数，也指步长（增量）
+	for(gap=num/2; gap>0; gap /= 2)
 	{
 		//组内数据快速排序
 		for(i=gap; i<num; i++)

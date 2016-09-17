@@ -34,7 +34,7 @@ void MergeSort(int *array, const size_t num)
 作者: Lee.C
 完成时间:2016-05-30
 **************************************/
-static void MSort(int *array, const size_t first, const size_t end, int *tempArray)
+static void MSort(int *array, size_t first, size_t end, int *tempArray)
 {
 	assert(array);
 	
@@ -66,7 +66,7 @@ static void MSort(int *array, const size_t first, const size_t end, int *tempArr
 作者: Lee.C
 完成时间:2016-05-30
 **********************************************/
-static void MergeArray(int *array, const size_t first, const size_t mid, const size_t end, int *tempArray)
+static void MergeArray(int *array, size_t first, size_t mid, size_t end, int *tempArray)
 {
 	assert(array);
 	

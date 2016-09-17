@@ -47,7 +47,7 @@ void CreateBiTree(BiTree *T, Status (*Input)(BiTreeItem *e))
 作者: Lee.C
 完成时间:2016-05-18
 **************************************/
-void PreOrderTraverse(const BiTree T, void(*pfun)(BiTreeItem *e))
+void PreOrderTraverse(BiTree T, void(*pfun)(BiTreeItem *e))
 {
 	if(T == NULL)
 		return;
@@ -65,7 +65,7 @@ void PreOrderTraverse(const BiTree T, void(*pfun)(BiTreeItem *e))
 作者: Lee.C
 完成时间:2016-05-18
 **************************************/
-void InOrderTraverse(const BiTree T, void(*pfun)(BiTreeItem *e))
+void InOrderTraverse(BiTree T, void(*pfun)(BiTreeItem *e))
 {
 	if(T == NULL)
 		return;
@@ -83,7 +83,7 @@ void InOrderTraverse(const BiTree T, void(*pfun)(BiTreeItem *e))
 作者: Lee.C
 完成时间:2016-05-18
 **************************************/
-void PostOrderTraverse(const BiTree T, void(*pfun)(BiTreeItem *e))
+void PostOrderTraverse(BiTree T, void(*pfun)(BiTreeItem *e))
 {
 	if(T == NULL)
 		return;

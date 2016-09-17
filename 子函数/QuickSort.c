@@ -241,6 +241,38 @@ static int GetPivot4(int *array, int low, int high)
 	return slow + 1;
 }
 
+/**********************************
+函数功能:调整数组并获取枢轴元素下标
+参数(Output)1:待排序数组
+参数2:排序区间起始下标
+参数3:排序区间末尾下标
+返回值:枢轴元素下标
+说明:又是一种获取枢轴，方法好理解，STL上用的此
+     感觉不对呀！！！！
+作者: Lee.C
+完成时间:2016-09-16
+**************************************/
+static int GetPivot5(int *array, int low, int high)
+{
+	int pivotKey = array[low];
+
+	while(TRUE)
+	{
+		while(array[low] < pivotKey)
+			low++;
+		while(array[high] > pivotKey)
+			high++;
+		
+		if(low > high)
+			return first;
+		
+		swap(&array[low], &array[high]);
+		
+		low++;
+		high--;
+	}
+}
+
 static void swap(int *a, int*b)
 {
 	int temp;

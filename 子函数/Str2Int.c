@@ -7,13 +7,13 @@
 作者: Lee.C
 完成时间:2016-05-19
 **************************************/
-int Str2Int(const char *str)
+int Str2Int(const char str[])
 {
 	//定义整形的上限和下限
 	static const int MAX_INT = (int)( (unsigned)~0 >> 1 );
 	static const int MIN_INT = -(int)( (unsigned)~0 >> 1 ) - 1;
 	
-	int num = 0, sign = 1;
+	int num = 0, sign = 1, sigleNum = 0;
 	
 	//判断是否是空
 	if(str == 0)
@@ -32,17 +32,22 @@ int Str2Int(const char *str)
 
 	while(isdigit(*str))
 	{
-		num = *str - '0';
-		if(sign>0 && (n>MAX_INT/10 || (n==MAX_INT/10 && c>MAX_INT%10)))
+		sigleNum = *str - '0';
+		if(sign>0 && (num>MAX_INT/10 || (num==MAX_INT/10 && sigleNum>MAX_INT%10)))
 		{
-			n = MAX_INT;
+			num = MAX_INT;
 			break;
 		}
-		else if(sign<0 && (n>(unsigned)
+		else if(sign<0 && (num>(unsigned)MIN_INT/10 || (num == (unsigned)MIN_INT/10 && sigleNum>(unsigned)MIN_INT%10)))
+		{
+			num = MIN_INT;
+			break;
+		}
+		
 		num = 10*num + (*str-'0');
 		str++;
 	}
 
-	return num * sign;
+	return sign>0 ? num : -num;;
 	
 }

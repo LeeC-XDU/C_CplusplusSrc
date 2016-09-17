@@ -11,7 +11,7 @@
 修改时间:2016-05-28
 修改说明:规范变量命名和类型等
 **************************************/
-void bubble_sort(int *array, size_t num)
+void bubble_sort(int array[], size_t num)
 {
 	assert(array);
 	/**********************************************
@@ -27,6 +27,7 @@ void bubble_sort(int *array, size_t num)
 		change = FALSE;
 		
 		for(j=0; j<i; j++)		//每一次内循环把最大的数升至顶端
+		{
 			if(array[j] > array[j+1])
 			{
 				temp = array[j];
@@ -35,5 +36,6 @@ void bubble_sort(int *array, size_t num)
 				
 				change = TRUE;	//如果整个序列已经有序，则这个数值不会变为真
 			}
+		}
 	}
 }

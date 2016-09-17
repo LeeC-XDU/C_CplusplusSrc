@@ -30,6 +30,8 @@ void MergeSort2(int *array, const size_t num)
 		MergePair(array, tempArray, pairwiseNum, num);
 		pairwiseNum *= 2;
 	}
+	
+	free(tempArray);
 }
 
 

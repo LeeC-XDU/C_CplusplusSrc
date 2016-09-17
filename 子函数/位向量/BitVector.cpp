@@ -16,7 +16,7 @@ BitVector::BitVector(int num):N(num)
 	 * 如果N恰为BITPERWORD的倍数，那么又要浪费一个int的空间了，
 	 * N取0时，仍会浪费一个int的空间，
 	 * N非0非BITPERWORD的倍数时，最多是最后一个int不完全利用而已
-	***********************************************************/k
+	***********************************************************/
 	array = new int[(N-1)/BITPERWORD + 1];
 	std::memset(array, 0, sizeof(int)*((N-1)/BITPERWORD + 1));
 }

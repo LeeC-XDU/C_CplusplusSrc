@@ -28,11 +28,11 @@ void AllPermutation(char* Str)
 作者: Lee.C
 完成时间:2016-08-18
 **************************************/
-void AllPermutation_aux(char *Str, int start, int end)
+void AllPermutation_aux(char *Str, int begin, int end)
 {
 	int i=0;
 
-	if(start == end)
+	if(begin == end)
 	{
 		//do something
 		//这里把整个字符串打印了出来，也可以将其保存在一个vector中
@@ -40,11 +40,11 @@ void AllPermutation_aux(char *Str, int start, int end)
 	}
 	else
 	{
-		for(i=start; i<=end; i++)
+		for(i=begin; i<=end; i++)
 		{
-			Swap(&Str[start], &Str[i]);
-			AllPermutation_aux(Str, start+1, end);
-			Swap(&Str[start], &Str[i]);
+			Swap(&Str[begin], &Str[i]);
+			AllPermutation_aux(Str, begin+1, end);
+			Swap(&Str[begin], &Str[i]);
 		}
 	}
 }
